@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, {PureComponent } from "react";      //This was bouns for the lab!
 
-class Timer extends Component {
-  constructor() {
-    super();
+class Timer extends PureComponent {   //When using the PureComponent you don't need shouldComponentUpdate b/c pure component
+  constructor() {                     //automatically does a comparison of current and next props & state, & only updated if it register
+    super();                          // a change.   Gets an instant easy reduction in unnecessary updates! 
     this.timer = React.createRef();
     this.state = {
       time: 0,
@@ -27,13 +27,13 @@ class Timer extends Component {
     this.timer.current.style.color = "#" + Math.floor(Math.random() * 16777215).toString(16);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if(this.state.time===nextState.time) {
-      return false 
-    }
-    return true
+  // shouldComponentUpdate(nextProps, nextState) {      //when PureComponent is used we don't need shouldComponentUpdate
+    // if(this.state.time===nextState.time) {
+      // return false 
+    // }
+    // return true
 
-  }
+  // }
 
   render() {
     const { time, color, logText } = this.state;
